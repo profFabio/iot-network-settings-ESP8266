@@ -21,14 +21,14 @@ public:
   void setup ();
   void loop ();
   byte getState ();
-  virtual void status (byte nubix_state);
-  virtual void changeState (byte _old, byte _new);
-
   void setConnectionTimeout (long connectionTimeout);
     
 
 protected:
   virtual void myLoop ();
+  virtual void mySetup ();
+  virtual void status (byte nubix_state);
+  virtual void changeState (byte _old, byte _new);
   void setState (byte state);
   String getServerSSID ();
   void initConfigState ();

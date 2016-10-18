@@ -102,9 +102,9 @@ bool Nubix::receiveConfigInfo () {
 
 //initialize nubix
 void Nubix::setup () {
-  
+  mySetup ();
   flash.init ();
-   Log::d(String ("Nubix::setup"));
+  Log::d(String ("Nubix::setup"));
   //flash.saveState (17);
   state = 0;
   status (state);
@@ -162,6 +162,10 @@ void Nubix::loop () {
 }
 
  void Nubix::myLoop () {
+  
+ }
+ 
+ void Nubix::mySetup () {
   
  }
 
