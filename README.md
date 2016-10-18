@@ -38,4 +38,4 @@ See the samples. Nubix library will handle the config and connection step. Once 
 
 The library works in a state machine. The picture helps you to understand the states and how they changes
 
-[[https://github.com/odelot/iot-network-settings-ESP8266/blob/master/img/states.png|alt=states]]
+[[https://github.com/odelot/iot-network-settings-ESP8266/blob/master/img/states.png]]
