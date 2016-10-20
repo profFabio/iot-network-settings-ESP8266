@@ -42,11 +42,12 @@ Veja a imagem para entender melhor como a biblioteca funciona.
 
 A biblioteca grava 97 bytes na memória eeprom. Você pode configurar um offset para gravar a partir de uma posição que não esteja em uso pela sua aplicação. Por padrão, o endereço inicial é o 0.
 
-pos (some seu offset)
-0 \t-> estado (da maquina de estado)
-1 \t-> tipo de segurança da conexão wifi (não utilizado por enquanto)
-2-33 \t-> SSID (recebido via wifi - no max. 32 posições)
-34-96 \t-> password do wifi (recebido via wifi - no max 63 posições)
+| Posição (some o offset)   | Descrição                                                            |
+|---------------------------|----------------------------------------------------------------------|
+|0                          |estado (da maquina de estado)                                         |
+|1                          |tipo de segurança da conexão wifi (não utilizado por enquanto)        |
+|2-33                       |SSID (recebido via wifi - no max. 32 posições)                        |
+|34-96                      |password do wifi (recebido via wifi - no max 63 posições)             |
 
 ## Uso
 
@@ -90,13 +91,13 @@ Nele, você verá que existe como controlar as mudanças de estado da maquina de
 
 ### Customização
 
-1. Enviar configuração sem usar o aplicativo android
+* Enviar configuração sem usar o aplicativo android
 
 Você não necessariamente precisa utilizar o aplicativo android para enviar as configurações. Você pode se conectar ao dispositivo quando ele estiver no estado NUBIX_NOT_CONFIGURED, abrir um Socket TCP no ip do servidor (por padrão 192.168.4.1) usando a porta definida na biblioteca (porta padrão: 9402) e enviar uma string com o seguinte padrão (mude SSID e PASS pelos valores que você deseja enviar):
-
- ```NI:ssid,pass ```
-
-2. Criar meu próprio aplicativo android para enviar configuração
+```
+NI:ssid,pass
+```
+* Criar meu próprio aplicativo android para enviar configuração
 
 O código fonte do aplicativo android, feito em cordova, está disponivel em: 
 Você pode customiza-lo ou absorvê-lo em sua aplicação
