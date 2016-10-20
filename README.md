@@ -1,41 +1,102 @@
 # iot-network-settings-ESP8266
-Provide a way to receive the network settings (ssid and pass) wirelessly to the IoT device made with esp8266.
-You can use it together with the cordova app, to config your device with your smartphone. Check it out here:
 
-built for arduino-esp8266 sdk - https://github.com/esp8266/Arduino
+Biblioteca construida para o ESP8266 com o SDK arduino (https://github.com/esp8266/Arduino) e fornece uma forma prática de configurar seu dispositivo IoT baseado no ESP8266 com os dados de acesso ao roteador wireless.
+
+Uma das formas propostas de configuração é através do aplicativo android disponivel em: https://play.google.com/store/apps/details?id=br.com.nubix.cordova.wifisettings 
 
 ## ChangeLog
 
 * 0.1 - initial commit
 
-## Motivation
+## Motivação
 
-When you are developing an IoT device with ESP8266, you need it to connect to a wifi network to send and receive data. To connect it to a wifi network, you need the wifi network credentials (ssid and pass). And you need a fancy and easy way to configure it, since you want that an avareage user could configure your device.
+Quando você está desenvolvendo um dispositivo IoT sem fio, com o ESP8266 por exemplo, é necessário que ele seja configurado com as informações necessarias (SSID da rede e senha, por exemplo) para acessar a rede wifi que contem internet.
 
-This library provides you an easy way to configure the device, receiving the wifi network credentials wirelessly. 
+Sugiro através dessa biblioteca uma forma simplificada de configuração, através do smartphone. É simples:
 
-To send the credential wirelessly, you can use my smartphone solution (checkout here) or send it by your own application*. 
+1. puxe a biblioteca ESP8266
 
-## Installation
+2. puxe o aplicativo Android* https://play.google.com/store/apps/details?id=br.com.nubix.cordova.wifisettings 
 
-1. Configure your arduino ide to compile and upload programs to ESP8266 (Arduino core for ESP8266 - details https://github.com/esp8266/Arduino)*
-2. Install iot-network-settings-ESP8266 as Arduino Library 
+3. se preocupe somente com a programação fim do seu dispositivo
 
-## Limitation
+\* Você pode customizar o aplicativo Android e criar o seu. Veja  
+
+## Instalação
+
+1. Configure a IDE do Arduino para compilar e fazer uploads de programas para o ESP8266  (Arduino sdk para ESP8266 - detalhes em https://github.com/esp8266/Arduino)
+2. Instale a biblioteca iot-network-settings-ESP8266 como uma bilbioteca Arduino 
+
+## Limitações
 
 * the network info (ssid and pass) recevied is not encrypted
 * handle just WPA2, WPA and WEP networks. does not handle open networks, networks with certificates or with login pages.  
 
-## Usage
+## Maquina de estados
 
-See the samples. Nubix library will handle the config and connection step. Once connected in a wifi network, you gain control and can use the Wifi Layer to send and receive data. 
+Veja a imagem para entender melhor como a biblioteca funciona.
 
-\* if you don't want to use my smartphone solution to send the network info, you can connect to the wifi network made by ESP8266 in the NUBIX_NOT_CONFIGURED state, open a TCP socket to the server ip (by default 192.168.4.1) using the library port (default port: 9402) and send an string with this pattern (change SSID and PASS by the values you want to send):
+[[https://github.com/odelot/iot-network-settings-ESP8266/blob/master/img/states.png]]
+
+## EEPROM
+
+A biblioteca grava 97 bytes na memória eeprom. Você pode configurar um offset para gravar a partir de uma posição que não esteja em uso pela sua aplicação. Por padrão, o endereço inicial é o 0.
+
+pos (some seu offset)
+0 \t-> estado (da maquina de estado)
+1 \t-> tipo de segurança da conexão wifi (não utilizado por enquanto)
+2-33 \t-> SSID (recebido via wifi - no max. 32 posições)
+34-96 \t-> password do wifi (recebido via wifi - no max 63 posições)
+
+## Uso
+
+### Uso mais simples
+
+Veja o exemplo simplest-sample:
+
+```
+#include <Flash.h>
+#include <Log.h>
+#include <Nubix.h>
+#include <EEPROM.h>
+#include <ESP8266WiFi.h>
+
+Nubix nubix;
+
+void setup() {
+  Serial.begin (9600);
+  nubix.setup ();
+}
+
+void loop() {
+  nubix.loop ();
+  if (nubix.getState() == Nubix::NUBIX_CONNECTED) {
+    Serial.println ("do your stuff");
+  }
+}
+```
+
+Use o aplicativo Android para enviar as configurações da rede wifi que o dispositivo deve se conectar.
+
+Assim que a biblioteca conseguir as credenciais e se conectar, você pode executar seu código (na parte "do your stuff")
+
+Veja o video mostrando esse procedimento:
+
+### Uso sugerido
+
+Veja o exemplo suggested-sample.
+
+Nele, você verá que existe como controlar as mudanças de estado da maquina de estado da biblioteca.
+
+### Customização
+
+1. Enviar configuração sem usar o aplicativo android
+
+Você não necessariamente precisa utilizar o aplicativo android para enviar as configurações. Você pode se conectar ao dispositivo quando ele estiver no estado NUBIX_NOT_CONFIGURED, abrir um Socket TCP no ip do servidor (por padrão 192.168.4.1) usando a porta definida na biblioteca (porta padrão: 9402) e enviar uma string com o seguinte padrão (mude SSID e PASS pelos valores que você deseja enviar):
 
  ```NI:ssid,pass ```
 
-## State
+2. Criar meu próprio aplicativo android para enviar configuração
 
-The library works in a state machine. The picture helps you to understand the states and how they changes
-
-[[https://github.com/odelot/iot-network-settings-ESP8266/blob/master/img/states.png]]
+O código fonte do aplicativo android, feito em cordova, está disponivel em: 
+Você pode customiza-lo ou absorvê-lo em sua aplicação
