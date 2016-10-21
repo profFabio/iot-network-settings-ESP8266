@@ -7,7 +7,7 @@ Uma das formas propostas de configuração é através do aplicativo android dis
 
 ## ChangeLog
 
-* 0.1 - initial commit
+* 0.1 - Commit Inicial
 
 ## Motivação
 
@@ -31,8 +31,8 @@ Sugiro através dessa biblioteca uma forma simplificada de configuração, atrav
 
 ## Limitações
 
-* the network info (ssid and pass) recevied is not encrypted
-* handle just WPA2, WPA and WEP networks. does not handle open networks, networks with certificates or with login pages.  
+* Os dados da rede wifi são recebidos sem criptografia 
+* Lida somente com acesso a redes wifi WPA2, WPA e WEP. Não lida com redes abertas, nem as que usam certificados ou paginas de login.  
 
 ## Maquina de estados
 
