@@ -36,7 +36,7 @@ Sugiro através dessa biblioteca uma forma simplificada de configuração, atrav
 
 Veja a imagem para entender melhor como a biblioteca funciona.
 
-[[https://github.com/odelot/iot-network-settings-ESP8266/blob/master/img/states.png]]
+![estados](https://github.com/odelot/iot-network-settings-ESP8266/blob/master/img/states.png)
 
 ## EEPROM
 
