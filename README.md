@@ -2,7 +2,8 @@
 
 Biblioteca construida para o ESP8266 com o SDK arduino (https://github.com/esp8266/Arduino) e fornece uma forma prática de configurar seu dispositivo IoT baseado no ESP8266 com os dados de acesso ao roteador wireless.
 
-Uma das formas propostas de configuração é através do aplicativo android disponivel em: https://play.google.com/store/apps/details?id=br.com.nubix.cordova.wifisettings 
+Uma das formas propostas de configuração é através do aplicativo android disponivel na Play Store (clique na imagem): 
+<a href='https://play.google.com/store/apps/details?id=br.com.nubix.cordova.wifisettings&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Disponível no Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/pt-br_badge_web_generic.png' width="200px"/></a>
 
 ## ChangeLog
 
@@ -16,11 +17,12 @@ Sugiro através dessa biblioteca uma forma simplificada de configuração, atrav
 
 1. puxe a biblioteca ESP8266
 
-2. puxe o aplicativo Android* https://play.google.com/store/apps/details?id=br.com.nubix.cordova.wifisettings 
+2. puxe o aplicativo Android* 
+<a href='https://play.google.com/store/apps/details?id=br.com.nubix.cordova.wifisettings&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Disponível no Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/pt-br_badge_web_generic.png' width="200px"/></a>
 
 3. se preocupe somente com a programação fim do seu dispositivo
 
-\* Você pode customizar o aplicativo Android e criar o seu. Veja  
+\* Você pode customizar o aplicativo Android e criar o seu. O codigo fonte está disponivel em:  https://github.com/profFabio/iot-network-settings-cordova
 
 ## Instalação
 
@@ -99,5 +101,5 @@ NI:ssid,pass
 ```
 * Criar meu próprio aplicativo android para enviar configuração
 
-O código fonte do aplicativo android, feito em cordova, está disponivel em: 
+O código fonte do aplicativo android, feito em cordova, está disponivel em: https://github.com/profFabio/iot-network-settings-cordova
 Você pode customiza-lo ou absorvê-lo em sua aplicação
